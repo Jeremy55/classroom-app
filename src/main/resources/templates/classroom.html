@@ -1,0 +1,21 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Une page</title>
+</head>
+<body>
+<strong> Teacher </strong>
+<ul>
+    <li>  <p th:text="${teacher.getFirstname()}" > </li>
+    <li>  <p th:text="${teacher.getLastname()}" > </li>
+</ul>
+<strong> Students </strong>
+<ul th:each="student : ${students}">
+    <li>  <p th:text="${student.getFirstname()} + ' ' + ${student.getLastname()}" > </li>
+    <img th:src="@{${'images/' + student.getFirstname() + student.getLastname() + '.jpg'}}" width="120"/>
+</ul>
+</body>
+</html>
