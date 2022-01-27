@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ClassroomRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -35,16 +36,22 @@ class Classroom
     private $teacher;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ClassroomStudent", mappedBy="classroom")
+     * @ORM\OneToMany(targetEntity="App\Entity\ClassroomStudent", mappedBy="classroom")
      * @Groups({"attributes_sent_in_json"})
      */
     private $students;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ClassroomPhoto", mappedBy="classroom")
+     * @ORM\OneToMany(targetEntity="App\Entity\ClassroomPhoto", mappedBy="classroom")
      * @Groups({"attributes_sent_in_json"})
      */
     private $photos;
+
+    public function __construct()
+    {
+        $this->students = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {
