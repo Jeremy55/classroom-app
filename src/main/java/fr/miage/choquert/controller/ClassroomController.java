@@ -1,11 +1,11 @@
 package fr.miage.choquert.controller;
 
 import fr.miage.choquert.dto.ClassroomView;
+import fr.miage.choquert.dto.NewClassroom;
 import fr.miage.choquert.services.ClassroomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +21,10 @@ public class ClassroomController {
         return gamesService.findAll();
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ClassroomView create(@RequestBody NewClassroom classroom) {
+        return gamesService.create(classroom);
+    }
 }
 
