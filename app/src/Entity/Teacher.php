@@ -24,12 +24,8 @@ class Teacher
     #[ORM\Column(type: 'string', length: 255)]
     private $subject;
 
-    #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Course::class)]
-    private $courses;
-
     public function __construct()
     {
-        $this->courses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,33 +69,4 @@ class Teacher
         return $this;
     }
 
-    /**
-     * @return Collection|Course[]
-     */
-    public function getCourses(): Collection
-    {
-        return $this->courses;
-    }
-
-    public function addCourse(Course $course): self
-    {
-        if (!$this->courses->contains($course)) {
-            $this->courses[] = $course;
-            $course->setTeacher($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCourse(Course $course): self
-    {
-        if ($this->courses->removeElement($course)) {
-            // set the owning side to null (unless already changed)
-            if ($course->getTeacher() === $this) {
-                $course->setTeacher(null);
-            }
-        }
-
-        return $this;
-    }
 }

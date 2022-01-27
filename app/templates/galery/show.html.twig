@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galery{% endblock %}
+
+{% block body %}
+    <h1>Galery</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ galery.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('galery_index') }}">back to list</a>
+
+    <a href="{{ path('galery_edit', {'id': galery.id}) }}">edit</a>
+
+    {{ include('galery/_delete_form.html.twig') }}
+{% endblock %}

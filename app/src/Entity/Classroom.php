@@ -2,28 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\CourseRepository;
+use App\Repository\ClassroomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CourseRepository::class)]
-class Course
+#[ORM\Entity(repositoryClass: ClassroomRepository::class)]
+class Classroom
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Teacher::class, inversedBy: 'courses')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $teacher;
-
-    #[ORM\ManyToMany(targetEntity: Student::class, inversedBy: 'courses')]
-    private $students;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
+
+    #[ORM\OneToOne(targetEntity: Teacher::class, cascade: ['persist', 'remove'])]
+    private $teacher;
+
+    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity: Student::class)]
+    private $students;
 
     public function __construct()
     {
@@ -33,6 +32,18 @@ class Course
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getTeacher(): ?Teacher
@@ -59,6 +70,7 @@ class Course
     {
         if (!$this->students->contains($student)) {
             $this->students[] = $student;
+            $student->setClassroom($this);
         }
 
         return $this;
@@ -66,19 +78,12 @@ class Course
 
     public function removeStudent(Student $student): self
     {
-        $this->students->removeElement($student);
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+        if ($this->students->removeElement($student)) {
+            // set the owning side to null (unless already changed)
+            if ($student->getClassroom() === $this) {
+                $student->setClassroom(null);
+            }
+        }
 
         return $this;
     }
