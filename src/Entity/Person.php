@@ -44,7 +44,6 @@ class Person
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
-
         return $this;
     }
 
@@ -56,7 +55,6 @@ class Person
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
-
         return $this;
     }
 }

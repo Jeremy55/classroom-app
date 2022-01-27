@@ -15,7 +15,7 @@ class ClassroomController extends AbstractController
      */
     public function getAll(ClassroomRepository $classroomRepository): JsonResponse
     {
-        $classroom = $classroomRepository->findAll();
-        return $this->json($classroom, 200, [], ["groups" => "attributes_sent_in_json"]);
+        $classrooms = $classroomRepository->findAll();
+        return $this->json($classrooms, 200, [], ["groups" => "attributes_sent_in_json"]);
     }
 }

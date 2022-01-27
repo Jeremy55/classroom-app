@@ -18,9 +18,9 @@ class ClassroomStudent
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Classroom")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Classroom", inversedBy="students")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_classroom", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="classroom_id", referencedColumnName="id")
      * })
      */
     private $classroom;
@@ -28,47 +28,32 @@ class ClassroomStudent
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Person")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="is_person_student", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="person_student_id", referencedColumnName="id")
      * })
      * @Groups({"attributes_sent_in_json"})
      */
     private $student;
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getClassroom()
     {
         return $this->classroom;
     }
 
-    /**
-     * @param mixed $classroom
-     */
     public function setClassroom($classroom): void
     {
         $this->classroom = $classroom;
     }
 
-    /**
-     * @return mixed
-     */
     public function getStudent()
     {
         return $this->student;
     }
 
-    /**
-     * @param mixed $student
-     */
     public function setStudent($student): void
     {
         $this->student = $student;

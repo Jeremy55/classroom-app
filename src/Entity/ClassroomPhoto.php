@@ -18,9 +18,9 @@ class ClassroomPhoto
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Classroom")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Classroom", inversedBy="photos")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_classroom", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="classroom_id", referencedColumnName="id")
      * })
      */
     private $classroom;
@@ -28,47 +28,32 @@ class ClassroomPhoto
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Photo")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_photo", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
      * })
      * @Groups({"attributes_sent_in_json"})
      */
     private $photo;
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getClassroom()
     {
         return $this->classroom;
     }
 
-    /**
-     * @param mixed $classroom
-     */
     public function setClassroom($classroom): void
     {
         $this->classroom = $classroom;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPhoto()
     {
         return $this->photo;
     }
 
-    /**
-     * @param mixed $photo
-     */
     public function setPhoto($photo): void
     {
         $this->photo = $photo;

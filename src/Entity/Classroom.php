@@ -28,7 +28,7 @@ class Classroom
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Person")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_PERSON_TEACHER", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="person_teacher_id", referencedColumnName="id")
      * })
      * @Groups({"attributes_sent_in_json"})
      */
@@ -59,37 +59,24 @@ class Classroom
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTeacher()
     {
         return $this->teacher;
     }
 
-    /**
-     * @param mixed $teacher
-     */
     public function setTeacher($teacher): void
     {
         $this->teacher = $teacher;
     }
 
-    /**
-     * @return mixed
-     */
     public function getStudents()
     {
         return $this->students;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPhotos()
     {
         return $this->photos;
