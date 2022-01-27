@@ -19,6 +19,7 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String path;
 
 
 }

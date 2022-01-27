@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -18,12 +19,6 @@ public class Room {
     private long id;
 
     private String name;
-
-    @OneToOne
-    private Teacher teacher;
-
-    @ManyToOne
-    private Student students;
 
 
 }
