@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ClassroomRepository;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Collection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -49,8 +50,8 @@ class Classroom
 
     public function __construct()
     {
-        $this->students = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->students = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,22 +70,23 @@ class Classroom
         return $this;
     }
 
-    public function getTeacher()
+    public function getTeacher(): Person
     {
         return $this->teacher;
     }
 
-    public function setTeacher($teacher): void
+    public function setTeacher(Person $teacher): self
     {
         $this->teacher = $teacher;
+        return $this;
     }
 
-    public function getStudents()
+    public function getStudents(): Collection
     {
         return $this->students;
     }
 
-    public function getPhotos()
+    public function getPhotos(): Collection
     {
         return $this->photos;
     }

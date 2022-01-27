@@ -39,23 +39,27 @@ class ClassroomStudent
         return $this->id;
     }
 
-    public function getClassroom()
+    public function getClassroom(): Classroom
     {
         return $this->classroom;
     }
 
-    public function setClassroom($classroom): void
+    public function setClassroom(Classroom $classroom): self
     {
         $this->classroom = $classroom;
+        return $this;
+
     }
 
-    public function getStudent()
+    public function getStudent(): Person
     {
         return $this->student;
     }
 
-    public function setStudent($student): void
+    public function setStudent(Person $student): self
     {
         $this->student = $student;
+        return $this;
+
     }
 }

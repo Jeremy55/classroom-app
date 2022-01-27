@@ -44,18 +44,20 @@ class ClassroomPhoto
         return $this->classroom;
     }
 
-    public function setClassroom($classroom): void
+    public function setClassroom(Classroom $classroom): self
     {
         $this->classroom = $classroom;
+        return $this;
     }
 
-    public function getPhoto()
+    public function getPhoto(): Photo
     {
         return $this->photo;
     }
 
-    public function setPhoto($photo): void
+    public function setPhoto(Photo $photo): self
     {
         $this->photo = $photo;
+        return $this;
     }
 }
