@@ -19,4 +19,6 @@ public class Student {
     private String surname;
     @ManyToMany
     private ArrayList<Class> classroom;
+    @OneToOne
+    private Photo photo;
 }
