@@ -1,10 +1,5 @@
-package fr.miage.choquert.services;
+package fr.miage.choquert.classroom;
 
-import fr.miage.choquert.dto.ClassroomView;
-import fr.miage.choquert.dto.NewClassroom;
-import fr.miage.choquert.entities.Classroom;
-import fr.miage.choquert.mappers.ClassroomMapper;
-import fr.miage.choquert.repositories.ClassroomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

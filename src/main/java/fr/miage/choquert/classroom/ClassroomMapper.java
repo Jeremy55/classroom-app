@@ -1,8 +1,5 @@
-package fr.miage.choquert.mappers;
+package fr.miage.choquert.classroom;
 
-import fr.miage.choquert.dto.ClassroomView;
-import fr.miage.choquert.entities.Classroom;
-import fr.miage.choquert.dto.NewClassroom;
 import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 

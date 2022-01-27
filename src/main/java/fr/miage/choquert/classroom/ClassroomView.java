@@ -1,4 +1,4 @@
-package fr.miage.choquert.dto;
+package fr.miage.choquert.classroom;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

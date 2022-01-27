@@ -1,8 +1,5 @@
-package fr.miage.choquert.controller;
+package fr.miage.choquert.classroom;
 
-import fr.miage.choquert.dto.ClassroomView;
-import fr.miage.choquert.dto.NewClassroom;
-import fr.miage.choquert.services.ClassroomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

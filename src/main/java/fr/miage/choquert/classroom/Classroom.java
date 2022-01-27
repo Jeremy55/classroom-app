@@ -1,4 +1,4 @@
-package fr.miage.choquert.entities;
+package fr.miage.choquert.classroom;
 
 import lombok.*;
 
