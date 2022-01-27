@@ -16,10 +16,10 @@ class Student
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Lastname;
+    private $lastname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Firstname;
+    private $firstname;
 
     #[ORM\ManyToMany(targetEntity: Course::class, mappedBy: 'students')]
     private $courses;
@@ -36,24 +36,24 @@ class Student
 
     public function getLastname(): ?string
     {
-        return $this->Lastname;
+        return $this->lastname;
     }
 
-    public function setLastname(string $Lastname): self
+    public function setLastname(string $lastname): self
     {
-        $this->Lastname = $Lastname;
+        $this->lastname = $lastname;
 
         return $this;
     }
 
     public function getFirstname(): ?string
     {
-        return $this->Firstname;
+        return $this->firstname;
     }
 
-    public function setFirstname(string $Firstname): self
+    public function setFirstname(string $firstname): self
     {
-        $this->Firstname = $Firstname;
+        $this->firstname = $firstname;
 
         return $this;
     }
