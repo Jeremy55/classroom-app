@@ -1,2 +1,5 @@
 # classroom-app
-uni-class-room-app
+
+Pour tester : http://127.0.0.1:8082/
+
+

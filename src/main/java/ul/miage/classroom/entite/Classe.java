@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -22,10 +23,10 @@ public class Classe implements Serializable {
     private Professeur professeur;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private ArrayList<Eleve> eleves;
+    private Collection<Eleve> eleves;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private ArrayList<Photo> galerie;
+    private Collection<Photo> galerie;
 
 
 
