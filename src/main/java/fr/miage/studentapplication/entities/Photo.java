@@ -2,20 +2,21 @@ package fr.miage.studentapplication.entities;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Teacher {
+@Getter
+@Setter
+public class Photo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
-    private String firstName;
+    private String path;
 }

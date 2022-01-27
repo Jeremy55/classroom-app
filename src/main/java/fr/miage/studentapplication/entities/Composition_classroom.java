@@ -6,19 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+@Getter
+@Setter
+public class Composition_classroom {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
-    private String firstName;
-
-    @OneToOne
-    private Photo photo;
+    @ManyToOne
+    private Student student;
+    @ManyToOne
+    private Classroom classRoom;
 }
