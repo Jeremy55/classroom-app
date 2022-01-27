@@ -1,5 +1,4 @@
 # classroom-app
-uni-class-room-app
 
 #task : Create a classroom application
 
