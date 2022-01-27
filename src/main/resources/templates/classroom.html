@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<html>
+<head>
+    <title>Classroom</title>
+</head>
+<body>
+<div>
+    <h1>Classroom</h1>
+    <p><strong>Name </strong></p><p th:text="${classroom.name}"></p>
+    <p><strong>Teacher </strong></p><p th:text="${classroom.teacher.firstname} + ' ' + ${classroom.teacher.lastname}"></p>
+    <p><strong>Students <br></strong></p>
+    <ul th:each="student, iStat : ${classroom.students}">
+        <li> <p th:text="${student.firstname} + ' ' + ${student.lastname}"></p></li>
+    </ul>
+    <p><strong>Galleria </strong></p><img th:src="@{images/canard.png}" width="240">
+    <img th:src="@{${'images/' + classroom.galleria.path}}" width="240"/>
+</div>
+
+
+</body>
+</html>
