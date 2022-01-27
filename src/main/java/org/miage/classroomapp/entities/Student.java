@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -18,7 +19,7 @@ public class Student {
     private String name;
     private String surname;
     @ManyToMany
-    private ArrayList<Class> classroom;
+    private Collection<Class> classroom = new ArrayList<>();
     @OneToOne
     private Photo photo;
 }

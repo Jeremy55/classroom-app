@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -19,5 +20,5 @@ public class Class {
     @OneToOne(fetch = FetchType.EAGER)
     private Teacher teacher;
     @ManyToMany(fetch = FetchType.LAZY)
-    private ArrayList<Student> students;
+    private Collection<Student> students = new ArrayList<>();
 }
