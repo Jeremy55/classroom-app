@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/picture')]
 class PictureController extends AbstractController
@@ -23,17 +24,43 @@ class PictureController extends AbstractController
     }
 
     #[Route('/new', name: 'picture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $picture = new Picture();
         $form = $this->createForm(PictureType::class, $picture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($picture);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('picture_index', [], Response::HTTP_SEE_OTHER);
+            $file = $form->get('name')->getData();
+
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $newFilename = uniqid() . '.' . $file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('pictures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $picture->setName($newFilename);
+                $picture->setPath($this->getParameter('pictures_directory') . $newFilename);
+
+
+                $entityManager->persist($picture);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('picture_index', [], Response::HTTP_SEE_OTHER);
+            }
+
         }
 
         return $this->renderForm('picture/new.html.twig', [

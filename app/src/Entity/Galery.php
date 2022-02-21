@@ -21,6 +21,9 @@ class Galery
     #[ORM\OneToMany(mappedBy: 'galery', targetEntity: Picture::class)]
     private $pictures;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -69,6 +72,18 @@ class Galery
                 $picture->setGalery(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block title %}Galery index{% endblock %}
 
@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
         {% for galery in galeries %}
             <tr>
                 <td>{{ galery.id }}</td>
+                <td>{{ galery.name }}</td>
                 <td>
                     <a href="{{ path('galery_show', {'id': galery.id}) }}">show</a>
                     <a href="{{ path('galery_edit', {'id': galery.id}) }}">edit</a>

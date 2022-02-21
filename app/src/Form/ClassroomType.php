@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Classroom;
+use App\Entity\Teacher;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +15,12 @@ class ClassroomType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('teacher')
-        ;
+            ->add('teacher', EntityType::class, [
+                'class' => Teacher::class,
+                'choice_label' => function ($teacher) {
+                    return $teacher->getFirstname() . " " . $teacher->getLastname();
+                }
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

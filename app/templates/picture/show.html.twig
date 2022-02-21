@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block title %}Picture{% endblock %}
 
@@ -18,6 +18,12 @@
             <tr>
                 <th>Path</th>
                 <td>{{ picture.path }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    <img src="{{ asset('/uploads/pictures/'~picture.name) }}" alt="{{ picture.name }}" height="200" width="200">
+                </td>
             </tr>
         </tbody>
     </table>
