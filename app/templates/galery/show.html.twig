@@ -11,8 +11,19 @@
                 <th>Id</th>
                 <td>{{ galery.id }}</td>
             </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ galery.name }}</td>
+            </tr>
         </tbody>
     </table>
+
+    <div>
+        <h2>Pictures</h2>
+        {% for picture in galery.pictures %}
+            <img src="{{ asset('/uploads/pictures/'~picture.name) }}" alt="{{ picture.name }}" height="200" width="200">
+        {% endfor %}
+    </div>
 
     <a href="{{ path('galery_index') }}">back to list</a>
 
